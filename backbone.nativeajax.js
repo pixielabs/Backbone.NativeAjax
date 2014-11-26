@@ -103,14 +103,14 @@
       xhr.setRequestHeader(
         "Accept",
         options.dataType && xhrAccepts[options.dataType] ?
-          xhrAccepts[options.dataType] + (options.dataType !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
+          xhrAccepts[options.dataType] :
           xhrAccepts["*"]
       );
 
       if (options.headers) for (var key in options.headers) {
         xhr.setRequestHeader(key, options.headers[key]);
       }
-      if (options.beforeSend) options.beforeSend(xhr);
+      if (options.beforeSend) options.beforeSend(xhr, options);
       xhr.send(options.data);
 
       return promise;
